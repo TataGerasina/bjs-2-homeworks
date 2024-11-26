@@ -1,7 +1,7 @@
 "use strict"
 let a = +prompt;
-b = +prompt;
-c = +prompt;
+let b = +prompt;
+let c = +prompt;
 function solveEquation(a, b, c) {
 let arr = [];
 let discr = (a, b, c) => b ** 2 - 4 * a * c;
