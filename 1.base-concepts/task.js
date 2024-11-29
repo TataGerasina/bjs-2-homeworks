@@ -22,3 +22,18 @@ function solveEquation(a, b, c) {
 	}
 	return arr;
 }
+
+"use strict"
+let percent = +prompt;
+let contribution = +prompt;
+let amount = +prompt;
+let countMonths = +prompt;
+
+function calculateTotalMortgage(percent, contribution, amount, countMonths) {
+
+	let monthlyPercent = percent / 100 / 12;
+	let bodyCredit = amount - contribution;
+	let monthlyPayment = bodyCredit * (monthlyPercent + (monthlyPercent / ((Math.pow((1 + monthlyPercent)) - 1))));
+	let totalAmount = monthlyPayment * countMonths;
+	return totalAmount;
+}
