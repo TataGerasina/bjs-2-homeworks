@@ -15,7 +15,7 @@ function Student(name, gender, age) {
 			return;
 		}
 
-		if (!!this.marksToAdd.lenght) {
+		if (!!marksToAdd.lenght) {
 			this.marks.push(...marksToAdd);
 		}
 
