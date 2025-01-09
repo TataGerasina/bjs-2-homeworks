@@ -23,12 +23,11 @@ function Student(name, gender, age) {
 	}
 
 	Student.prototype.getAverage = function() {
-
 		if (!this.marks || !this.marks.length) {
 			return 0;
 		}
 		const sum = this.marks.reduce((acc, curr) => acc + curr);
-		return sum / this.marks.length;
+		return Number((sum / this.marks.length).toFixed(2));
 	}
 
 	Student.prototype.exclude = function(reason) {
