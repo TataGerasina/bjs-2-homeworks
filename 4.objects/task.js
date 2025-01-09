@@ -49,10 +49,4 @@ function Student(name, gender, age) {
 	student2.exclude('плохая учёба')
 	console.log(student2)
 	// {name: "Артём", gender: "мужской", age: 25, excluded: "плохая учёба"}
-	let student3 = new Student("Андрей", "мужской", 28);
-	student3.setSubject("History");
-	student1.addMarks(2, 3, 2, 2);
-	student3.exclude('плохая учёба')
-	console.log(student3)
-	// {name: "Андрей", gender: "мужской", age: 28, excluded: "плохая учёба"}
 }
