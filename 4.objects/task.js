@@ -5,6 +5,7 @@ function Student(name, gender, age) {
 	this.age = age;
 	this.marks = [];
 }
+
 	Student.prototype.setSubject = function(subjectName) {
 		this.subject = subjectName;
 	}
@@ -27,7 +28,7 @@ function Student(name, gender, age) {
 			return 0;
 		}
 		const sum = this.marks.reduce((acc, curr) => acc + curr);
-		return Number((sum / this.marks.length).toFixed(2));
+		return Number((sum / this.marks.length).toFixed(1));
 	}
 
 	Student.prototype.exclude = function(reason) {
