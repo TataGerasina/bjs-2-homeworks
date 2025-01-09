@@ -4,7 +4,7 @@ function Student(name, gender, age) {
 	this.gender = gender;
 	this.age = age;
 	this.marks = [];
-
+}
 	Student.prototype.setSubject = function(subjectName) {
 		this.subject = subjectName;
 	}
@@ -49,4 +49,3 @@ function Student(name, gender, age) {
 	student2.exclude('плохая учёба')
 	console.log(student2)
 	// {name: "Артём", gender: "мужской", age: 25, excluded: "плохая учёба"}
-}
