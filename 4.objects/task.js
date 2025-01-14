@@ -29,7 +29,7 @@ Student.prototype.getAverage = function() {
 	}
 
 	const sum = this.marks.reduce((acc, curr) => acc + curr);
-	return sum / this.marks.length;
+	return Number((sum / this.marks.length).toFixed(1));
 }
 
 Student.prototype.exclude = function(reason) {
