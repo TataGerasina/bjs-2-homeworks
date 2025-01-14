@@ -24,7 +24,7 @@ function Student(name, gender, age) {
 	}
 
 	Student.prototype.getAverage = function() {
-		if (!this.marks || !this.marks.length) {
+		if ((!this.marks) || (!this.marks.length)) {
 			return 0;
 		}
 		const sum = this.marks.reduce((acc, curr) => acc + curr);
