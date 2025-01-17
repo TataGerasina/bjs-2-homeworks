@@ -15,7 +15,7 @@ Student.prototype.addMarks = function(...marksToAdd) {
 		return;
 	}
 
-	if (!!marksToAdd.lenght) {
+	if (!!marksToAdd.length) {
 		this.marks.push(...marksToAdd);
 		//this.marks = [...this.marks, ...marksToAdd]
 	}
