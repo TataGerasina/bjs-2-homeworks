@@ -45,7 +45,7 @@ class Magazine extends PrintEditionItem {
 	}
 }
 class Book extends PrintEditionItem {
-	constructor(name, releaseDate, pagesCount, author) {
+	constructor(author, name, releaseDate, pagesCount) {
 		super(name, releaseDate, pagesCount);
 		this.author = author;
 		this.type = "book";
@@ -53,20 +53,20 @@ class Book extends PrintEditionItem {
 }
 
 class NovelBook extends Book {
-	constructor(name, releaseDate, pagesCount, author) {
-		super(name, releaseDate, pagesCount, author);
+	constructor(author, name, releaseDate, pagesCount) {
+		super(author, name, releaseDate, pagesCount);
 		this.type = "novel";
 	}
 }
 class FantasticBook extends Book {
-	constructor(name, releaseDate, pagesCount, author) {
-		super(name, releaseDate, pagesCount, author);
+	constructor(author, name, releaseDate, pagesCount) {
+		super(author, name, releaseDate, pagesCount);
 		this.type = "fantastic";
 	}
 }
 class DetectiveBook extends Book {
-	constructor(name, releaseDate, pagesCount, author) {
-		super(name, releaseDate, pagesCount, author);
+	constructor(author, name, releaseDate, pagesCount) {
+		super(author, name, releaseDate, pagesCount);
 		this.type = "detective";
 	}
 }
@@ -83,3 +83,61 @@ picknick.state = 10;
 console.log(picknick.state); //10
 picknick.fix();
 console.log(picknick.state); //15
+
+class Library {
+	constructor(name) {
+		this.name = name;
+		this.books = [];
+	}
+
+	addBook(book) {
+		if (this._state > 30) {
+			this.books.push(book);
+		}
+	}
+
+	findBookBy(type, value) {
+		for (let i = 0; i < this.books.length; i++) {
+			const book = this.books[i];
+			if (book[type] === value) {
+				return book;
+			}
+		}
+		
+		giveBookByName(bookName) {
+			const index = this.books.findIndex(book => book.name === bookName);
+			if (index !== -1) {
+				return this.books.splice(index, 1)[0];
+			}
+			return null;
+		}
+	}
+
+	const library = new Library("Библиотека имени Ленина");
+
+	library.addBook(
+		new DetectiveBook(
+			"Артур Конан Дойл",
+			"Полное собрание повестей и рассказов о Шерлоке Холмсе в одном томе",
+			2019,
+			1008
+		)
+	);
+
+	library.addBook(
+		new FantasticBook(
+			"Аркадий и Борис Стругацкие",
+			"Пикник на обочине",
+			1972,
+			168
+		)
+	);
+	library.addBook(new NovelBook("Герберт Уэллс", "Машина времени", 1895, 138));
+	library.addBook(new Magazine("Мурзилка", 1919, 60));
+
+	console.log(library.findBookBy("name", "Властелин колец")); //null
+	console.log(library.findBookBy("releaseDate", 1919).name); //"Мурзилка"
+
+	console.log("Количество книг до выдачи: " + library.books.length); //Количество книг до выдачи: 4
+	library.giveBookByName("Машина времени");
+	console.log("Количество книг после выдачи: " + library.books.length); //Количество книг после выдачи: 3
