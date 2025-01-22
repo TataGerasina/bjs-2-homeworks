@@ -44,6 +44,14 @@ class Magazine extends PrintEditionItem {
 		this.type = "magazine";
 	}
 }
+
+const picknickMagazine = new Magazine(
+	"Аркадий и Борис Стругацкие",
+	"Пикник на обочине",
+	1972,
+	168
+);
+
 class Book extends PrintEditionItem {
 	constructor(author, name, releaseDate, pagesCount) {
 		super(name, releaseDate, pagesCount);
@@ -83,3 +91,80 @@ picknick.state = 10;
 console.log(picknick.state); //10
 picknick.fix();
 console.log(picknick.state); //15
+
+
+class Library{
+	constructor(name) {
+		this.name = name;
+		this.books = [];
+	}
+
+	addBook(book) {
+		if (book.state > 30) {
+			this.books.push(book);
+		}
+	}
+	
+	findBookBy(type, value) {
+		//for (let i = 0; i < this.books.length; i++) {
+		//	const book = this.books[i];
+		//	if (book[type] === value) {
+		//		return book;
+		//	}
+		//}
+		const findedByParametrBook = this.books.find(item => item[type] === value)
+		return !!findedByParametrBook ? findedByParametrBook: null;
+	} 
+		
+	giveBookByName(bookName) {
+		const index = this.books.findIndex(book => book.name === bookName);
+		if (index !== -1) {
+			return this.books.splice(index, 1)[0];
+		}
+		return null;
+	}
+}
+
+	const library = new Library("Библиотека имени Ленина");
+
+	const detective = new DetectiveBook(
+		"Артур Конан Дойл",
+		"Полное собрание повестей и рассказов о Шерлоке Холмсе в одном томе",
+		2019,
+		1008
+	);
+	
+	library.addBook(detective);
+	
+	const fantastic = new FantasticBook(
+		"Аркадий и Борис Стругацкие",
+		"Пикник на обочине",
+		1972,
+		168
+	);
+
+	library.addBook(fantastic);
+
+	const novel = new NovelBook(
+		"Герберт Уэллс",
+		"Машина времени",
+		1895,
+		138
+	);
+
+	library.addBook(novel);
+
+	const magazine = new Magazine(
+		"Мурзилка",
+		1924,
+		60
+	);
+
+	library.addBook(magazine);
+
+	console.log(library.findBookBy("name", "Властелин колец")); //null
+	console.log(library.findBookBy("releaseDate", 1924).name); //"Мурзилка"
+	console.log("Количество книг до выдачи: " + library.books.length); //Количество книг до выдачи: 4
+	library.giveBookByName("Машина времени");
+	console.log("Количество книг после выдачи: " + library.books.length); //Количество книг после выдачи: 3	
+	console.log(library);
