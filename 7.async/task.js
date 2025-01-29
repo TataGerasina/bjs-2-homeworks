@@ -6,11 +6,11 @@ class AlarmClock {
 
 	addClock(time, callback) {
 		if (!time || !callback) {
-			throw new Error("Отсутствуют обязательные аргументы");
+			throw new Error(`Отсутствуют обязательные аргументы`);
 		}
 
 		if (this.alarmCollection.some(alarm => alarm.time === time)) {
-			console.warn("Уже присутствует звонок на это же время");
+			console.warn(`Уже присутствует звонок на это же время`);
 		} // есть ли звонок с таким же временем, то предупреждение
 
 		const newAlarm = {
@@ -28,10 +28,12 @@ class AlarmClock {
 
 	getCurrentFormattedTime() {
 		const now = new Date();
-		let hours = now.getHours();
-		let minutes = now.getMinutes();
+		//let hours = now.getHours();
+		//let minutes = now.getMinutes();
+        const hours = String(now.getHours()).padStart(2, `0`);
+		const minutes = String(now.getMinutes()).padStart(2,`0`);
 
-		return "${hours}:${minutes}";
+		return `${hours}:${minutes}`;
 	} //возвращает текущее время в строковом формате HH:MM.
 
 
