@@ -4,11 +4,11 @@ function cachingDecoratorNew(func) {
 
 	function wrapper(...args) {
 		const hash = md5(JSON.stringify(args));
-		const hasingText = String("Из кеша: ");
+		
 		let objectInCache = cache.find(item => item.hash === hash);
 		if(objectInCache){
-			console.log (hasingText + objectInCache.value, cache);
-			return hasingText + objectInCache.value;
+			console.log("Из кеша: " + objectInCache.value, cache);
+			return "Из кеша: " + objectInCache.value;
 		}
 		let result = func(...args);
 		cache.push({
@@ -19,7 +19,7 @@ function cachingDecoratorNew(func) {
 		if (cache.length > 5) {
 			cache.shift();
 		}
-		console.log ("Вычисляем: " + result, cache);
+		console.log("Вычисляем: " + result, cache);
 		return "Вычисляем: " + result;
 	}
 	return wrapper;
