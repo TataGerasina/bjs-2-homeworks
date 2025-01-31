@@ -15,8 +15,7 @@ function cachingDecoratorNew(func) {
 			hash: hash,
 			value: result
 		});
-		if (cache.length === 1)
-			
+		
 		if (cache.length > 5) {
 			cache.shift();
 		}
