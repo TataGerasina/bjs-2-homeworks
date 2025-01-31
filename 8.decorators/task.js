@@ -6,8 +6,8 @@ function cachingDecoratorNew(func) {
 		const hash = md5(JSON.stringify(args));
 		const hasingText = String("Из кэша: ");
 		let objectInCache = cache.find(item => item.hash === hash);
-		if (objectInCache) {
-			console.log(hasingText + objectInCache.value, cache);
+		if(objectInCache){
+			console.log (hasingText + objectInCache.value, cache);
 			return hasingText + objectInCache.value;
 		}
 		let result = func(...args);
@@ -15,10 +15,12 @@ function cachingDecoratorNew(func) {
 			hash: hash,
 			value: result
 		});
-        console.log("Вычисляем: " + result, cache);
+		if (cache.length === 1)
+			
 		if (cache.length > 5) {
 			cache.shift();
 		}
+		console.log ("Вычисляем: " + result, cache);
 		return "Вычисляем: " + result;
 	}
 	return wrapper;
