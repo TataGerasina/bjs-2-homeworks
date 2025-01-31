@@ -37,7 +37,7 @@ upgraded(6, 2, 3); // вычисляем: 24 (при этом кеш для 1, 2
 upgraded(1, 2, 3); // вычисляем: 9  (снова вычисляем, кеша нет)
 
 //Задача № 2
-function debounceDecoratorNew(func, delay) {
+function debounceDecoratorNew(functionToDecorate, delay) {
 	//Первый вызов происходил моментально, а следующий не раньше, чем через интервал времени, причём интервал должен задаваться в момент применения декоратора к функции.
 	let timeoutId;
 	
@@ -52,14 +52,14 @@ function debounceDecoratorNew(func, delay) {
 
 		if (!timeoutId) {
 			console.log("первый сигнал", args);
-			func.call(this, ...args);
+			functionToDecorate.call(this, ...args);
 			wrapper.count++;
 		}
 
 		timeoutId = setTimeout(() => {
 			console.log("сработал таймаут, так как задержка больше 2000")
 			console.log("args", args);
-			func.apply(this, args);
+			functionToDecorate.apply(this, args);
 			wrapper.count++;
 		}, delay);
 
